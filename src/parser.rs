@@ -8,18 +8,18 @@
 pub enum MarkdownElement {
     Header{ count: u8, text: String }, // h1 = count 1, h2 = count 2, h3 = count 3
     Ptag(String), //p태그
-    Blank_line, //빈칸
+    BlankLine, //빈칸
 }
 
 // ============= 마크 다운 파싱 함수 =============
 pub fn do_parse(md: &str) -> Vec<MarkdownElement> {
     let mut elements = Vec::new();
 
-    for line in md.line() {
+    for line in md.lines() {
         let trimmed_line = line.trim();
 
         if trimmed_line.is_empty() {
-            element.push(MarkdownElement::Blank_line);
+            elements.push(MarkdownElement::BlankLine);
         } else if trimmed_line.starts_with("###"){
             elements.push(MarkdownElement::Header{
                 count: 3,
