@@ -15,11 +15,11 @@ pub enum MarkdownElement {
 pub fn do_parse(md: &str) -> Vec<MarkdownElement> {
     let mut elements = Vec::new();
 
-    for line in md.line() {
+    for line in md.lines() {
         let trimmed_line = line.trim();
 
         if trimmed_line.is_empty() {
-            element.push(MarkdownElement::Blank_line);
+            elements.push(MarkdownElement::Blank_line);
         } else if trimmed_line.starts_with("###"){
             elements.push(MarkdownElement::Header{
                 count: 3,
